@@ -3,40 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUS Store | متجر الملوك</title>
+    <title>PUS STORE | GLOBAL EDITION</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; }
-        .gold-text { color: #D4AF37; }
-        .gold-bg { background-color: #D4AF37; }
-        .card { border: 1px solid #333; transition: 0.3s; }
-        .card:hover { border-color: #D4AF37; transform: translateY(-5px); }
+        :root { --primary: #3a5b70; --accent: #a5d8eb; --bg: #f0f7f9; }
+        body { background-color: var(--bg); font-family: 'Segoe UI', system-ui; padding-bottom: 90px; overflow-x: hidden; }
+        
+        /* تأثيرات المواقع العالمية */
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .neo-card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(58, 91, 112, 0.1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .neo-card:active { transform: scale(0.95); }
+        
+        /* شريط العروض المتحرك */
+        .promo-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; scrollbar-width: none; }
+        .promo-item { min-width: 85%; scroll-snap-align: center; background: linear-gradient(135deg, #3a5b70, #527a94); border-radius: 20px; position: relative; }
+        
+        /* أيقونات الشريط السفلي */
+        .nav-link { position: relative; transition: 0.3s; color: #94a3b8; }
+        .nav-link.active { color: var(--primary); }
+        .nav-link.active::after { content: ''; position: absolute; top: -12px; width: 25px; height: 4px; background: var(--primary); border-radius: 0 0 10px 10px; }
+
+        /* صفحة الحساب (تفاصيل دقيقة) */
+        .stat-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; }
+        
+        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        .loading-skeleton { animation: pulse 1.5s infinite ease-in-out; }
     </style>
 </head>
 <body>
-    <nav class="p-5 flex justify-between items-center border-b border-gray-800">
-        <h1 class="text-2xl font-bold gold-text underline">PUS</h1>
-        <div class="space-x-4 space-x-reverse">
-            <a href="#" class="hover:text-yellow-500">الرئيسية</a>
-            <a href="#" class="hover:text-yellow-500">الألعاب</a>
+
+    <header class="p-5 flex justify-between items-center bg-white sticky top-0 z-[100] shadow-sm">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-[#3a5b70] rounded-xl flex items-center justify-center text-white shadow-lg italic font-black">PUS</div>
+            <span class="font-bold text-[#3a5b70] tracking-tight text-lg">STORE</span>
         </div>
+        <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[#3a5b70]">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+    </header>
+
+    <main class="p-4 space-y-6">
+
+        <section id="offers-preview" class="space-y-3">
+            <div class="flex justify-between items-center px-1">
+                <h2 class="font-black text-[#3a5b70]">أفضل العروض والخصومات</h2>
+                <span class="text-xs text-blue-500 font-bold">عرض الكل</span>
+            </div>
+            <div class="promo-slider pb-2">
+                <div class="promo-item p-6 text-white overflow-hidden shadow-xl">
+                    <div class="relative z-10">
+                        <span class="bg-white/20 text-xs px-2 py-1 rounded-md">عرض لفترة محدودة</span>
+                        <h3 class="text-2xl font-black mt-2">شحن ببجي %30+</h3>
+                        <p class="text-sm opacity-80">على جميع باقات الـ UC</p>
+                    </div>
+                    <i class="fa-solid fa-bolt-lightning absolute -right-4 -bottom-4 text-8xl opacity-10 rotate-12"></i>
+                </div>
+                <div class="promo-item p-6 text-white bg-gradient-to-br from-indigo-500 to-purple-600 shadow-xl">
+                    <h3 class="text-2xl font-black">متابعين تيك توك</h3>
+                    <p class="text-sm">أرخص سعر في مصر حقيقي</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="page-content">
+            
+            <section id="shop-tab" class="tab-page space-y-4">
+                <div class="flex gap-3 overflow-x-auto no-scrollbar py-2">
+                    <button class="bg-[#3a5b70] text-white px-6 py-2 rounded-2xl shadow-lg font-bold text-sm">الألعاب</button>
+                    <button class="bg-white text-gray-500 px-6 py-2 rounded-2xl font-bold text-sm shadow-sm">التطبيقات</button>
+                    <button class="bg-white text-gray-500 px-6 py-2 rounded-2xl font-bold text-sm shadow-sm">رقمي</button>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div onclick="openGame('PUBG')" class="neo-card p-4 flex flex-col items-center text-center relative border border-gray-100">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl mb-4 flex items-center justify-center text-[#3a5b70] text-3xl">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h4 class="font-black text-[#3a5b70] text-sm mb-1">PUBG MOBILE</h4>
+                        <span class="text-[10px] text-green-500 font-bold bg-green-50 px-2 py-0.5 rounded-full">متوفر الآن</span>
+                    </div>
+                    <div class="neo-card p-4 flex flex-col items-center text-center border border-gray-100">
+                        <div class="w-16 h-16 bg-red-50 rounded-2xl mb-4 flex items-center justify-center text-red-500 text-3xl">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <h4 class="font-black text-[#3a5b70] text-sm mb-1">FREE FIRE</h4>
+                        <span class="text-[10px] text-gray-400 font-bold bg-gray-50 px-2 py-0.5 rounded-full">تحديث قريب</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="profile-tab" class="tab-page hidden space-y-4">
+                <div class="bg-white rounded-[30px] p-6 shadow-xl border border-blue-50">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#3a5b70] to-[#a5d8eb] flex items-center justify-center text-white text-2xl font-bold">A</div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-yellow-400 border-4 border-white rounded-full flex items-center justify-center text-[10px]"><i class="fa-solid fa-star text-white"></i></div>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-[#3a5b70] text-lg">Amr Ashraf</h3>
+                            <p class="text-xs text-gray-400">ID: 45889652 | لفل 15</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#3a5b70] rounded-2xl p-4 text-white flex justify-between items-center shadow-lg mb-6">
+                        <div>
+                            <p class="text-[10px] opacity-70">رصيد المحفظة</p>
+                            <h4 class="text-xl font-black">1,250.00 EGP</h4>
+                        </div>
+                        <button class="bg-white/20 p-2 rounded-lg backdrop-blur-md"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-4 stat-box">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-clock-rotate-left text-blue-400"></i>
+                                <span class="text-sm font-bold text-[#3a5b70]">سجل الطلبات</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-left text-gray-300 text-xs"></i>
+                        </div>
+                        <div class="flex items-center justify-between p-4 stat-box">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-shield-halved text-green-400"></i>
+                                <span class="text-sm font-bold text-[#3a5b70]">الأمان والخصوصية</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-left text-gray-300 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 inset-x-0 h-20 glass border-t border-white/50 z-[100] flex justify-around items-center px-4 rounded-t-[30px] shadow-2xl">
+        <button onclick="switchTab('shop')" class="nav-link active flex flex-col items-center gap-1 group">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center transition-all group-active:scale-75 active-bg">
+                <i class="fa-solid fa-house-user text-xl"></i>
+            </div>
+            <span class="text-[10px] font-bold">الرئيسية</span>
+        </button>
+        <button onclick="switchTab('offers')" class="nav-link flex flex-col items-center gap-1 group">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center transition-all group-active:scale-75">
+                <i class="fa-solid fa-fire-glow text-xl"></i>
+            </div>
+            <span class="text-[10px] font-bold">العروض</span>
+        </button>
+        <button onclick="switchTab('profile')" class="nav-link flex flex-col items-center gap-1 group">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center transition-all group-active:scale-75">
+                <i class="fa-solid fa-user-gear text-xl"></i>
+            </div>
+            <span class="text-[10px] font-bold">حسابي</span>
+        </button>
     </nav>
 
-    <section class="text-center py-20 px-5">
-        <h2 class="text-4xl font-extrabold mb-4">مع <span class="gold-text">PUS</span> أنت ملك السوشيال ميديا والألعاب</h2>
-        <p class="text-gray-400 mb-8">شحن فوري، أمان تام، وأفضل الأسعار في مصر.</p>
-        <a href="https://wa.me/201xxxxxxxxx" class="gold-bg text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-600">اطلب الآن عبر واتساب</a>
-    </section>
+    <script>
+        function switchTab(tab) {
+            // إخفاء الكل
+            document.querySelectorAll('.tab-page').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            // إظهار المطلوب
+            if(tab === 'shop') {
+                document.getElementById('shop-tab').classList.remove('hidden');
+            } else if(tab === 'profile') {
+                document.getElementById('profile-tab').classList.remove('hidden');
+            }
+            // تحديث الزر
+            event.currentTarget.classList.add('active');
+        }
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10 pb-20">
-        <div class="card p-6 rounded-xl text-center">
-            <h3 class="text-xl font-bold mb-2 gold-text">شحن ألعاب (UC / جواهر)</h3>
-            <p class="text-gray-500">شحن آمن بالـ ID لـ PUBG و Free Fire</p>
-        </div>
-        <div class="card p-6 rounded-xl text-center">
-            <h3 class="text-xl font-bold mb-2 gold-text">خدمات السوشيال ميديا</h3>
-            <p class="text-gray-500">تزويد متابعين وتوثيق حسابات</p>
-        </div>
-    </div>
+        function openGame(name) {
+            alert('جاري فتح قسم ' + name + '.. التفاصيل قادمة!');
+        }
+    </script>
 </body>
 </html>
