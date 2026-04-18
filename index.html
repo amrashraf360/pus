@@ -2,298 +2,65 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUS STORE | المتجر المتكامل</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>متجر PUS Gaming</title>
     <style>
-        :root { --main-blue: #3a5b70; --light-blue: #527a94; --bg-gray: #f0f7f9; }
-        body { background-color: var(--bg-gray); font-family: sans-serif; padding-bottom: 80px; }
-        
-        /* إخفاء الصفحات افتراضياً */
-        .page { display: none; animation: fadeIn 0.3s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* ستايل الكروت اللي في تصميمك */
-        .game-card { background: var(--main-blue); border-radius: 15px; aspect-ratio: 1/1; position: relative; transition: 0.3s; cursor: pointer; }
-        .game-card:active { transform: scale(0.95); }
-        .badge { position: absolute; top: -5px; right: -5px; background: #a5d8eb; color: var(--main-blue); padding: 2px 8px; border-radius: 8px; font-weight: bold; font-size: 12px; }
-        
-        /* القائمة السفلية */
-        .nav-item { color: #94a3b8; transition: 0.3s; }
-        .nav-item.active { color: var(--main-blue); font-weight: bold; }
+        /* هنا بنعمل "الشكل" اللي هو الـ CSS */
+        body {
+            background-color: #0b0f19; /* خلفية داكنة */
+            color: #ffffff;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+        .card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 280px;
+        }
+        .price-tag {
+            color: #22d3ee; /* لون سماوي فوسفوري */
+            font-size: 28px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .buy-button {
+            background: #22d3ee;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .buy-button:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
-    <header class="bg-[#3a5b70] p-4 flex justify-between items-center text-white sticky top-0 z-50">
-        <div class="flex items-center gap-2">
-            <img src="https://via.placeholder.com/30" class="rounded" alt="Logo"> <span class="font-bold italic text-xl">PUS</span>
-        </div>
-        <div class="text-left text-[10px] leading-tight opacity-90">
-            اشحن، العب، واتشهر..<br>كل اللي تحتاجه في مكان واحد
-        </div>
-    </header>
-
-    <section id="page-buy" class="page active p-4">
-        <div class="flex gap-4 mb-6 overflow-x-auto no-scrollbar font-bold text-[#3a5b70]">
-            <button class="bg-[#bdcad1] px-5 py-2 rounded-full shadow-sm">الألعاب</button>
-            <button class="px-5 py-2">التطبيقات</button>
-            <button class="px-5 py-2">الجيفت كارد</button>
-        </div>
-
-        <div class="grid grid-cols-3 gap-3">
-            <div onclick="openProduct('PUBG')" class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]">
-                <div class="mb-auto mt-4 text-2xl opacity-20"><i class="fa-solid fa-crown"></i></div>
-                <span class="font-bold uppercase">PUBG MOBILE</span>
-            </div>
-            <div class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]">
-                <div class="mb-auto mt-4 text-2xl opacity-20"><i class="fa-solid fa-fire"></i></div>
-                <span class="font-bold uppercase">FREE FIRE</span>
-            </div>
-            <div class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]">
-                <div class="mb-auto mt-4 text-2xl opacity-20"><i class="fa-brands fa-tiktok"></i></div>
-                <span class="font-bold uppercase">TIK TOK</span>
-            </div>
-            <div class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]"></div>
-            <div class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]"></div>
-            <div class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]"></div>
-        </div>
-    </section>
-
-    <section id="page-offers" class="page p-4">
-        <h2 class="text-[#3a5b70] font-bold mb-4">أفضل العروض والمتاحة:</h2>
-        <div class="grid grid-cols-3 gap-3">
-            <div class="game-card flex flex-col justify-end p-2 text-center text-white text-[10px]">
-                <span class="badge">%30</span>
-                <span class="font-bold">PUBG MOBILE</span>
-            </div>
-            </div>
-    </section>
-
-    <section id="page-market" class="page p-4">
-        <div class="flex gap-4 mb-6 font-bold text-[#3a5b70]">
-            <button class="bg-[#bdcad1] px-5 py-2 rounded-full shadow-sm">الألعاب</button>
-            <button class="px-5 py-2">رقمي</button>
-        </div>
-        <div class="grid grid-cols-3 gap-3">
-            <div class="game-card flex flex-col justify-end p-2 text-white text-[8px] leading-tight">
-                <div class="bg-[#2a4454] p-1 rounded mb-1">7,000 EGP</div>
-                <span class="font-bold">حساب PUBG MOBILE</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="page-profile" class="page p-4">
-        <div class="bg-white rounded-3xl p-6 text-center shadow-md">
-            <div class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 border-4 border-[#a5d8eb] flex items-center justify-center text-3xl text-[#3a5b70]">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <h3 class="font-bold text-xl text-[#3a5b70]">Amr Ashraf</h3>
-            <p class="text-sm text-gray-400 mb-6">ID:5674208480 </p>
-            
-            <div class="space-y-3">
-                <button class="w-full bg-[#3a5b70] text-white py-3 rounded-xl font-bold flex items-center justify-between px-5">
-                    <span>محفظتي</span> <i class="fa-solid fa-wallet"></i>
-                </button>
-                <button class="w-full border-2 border-[#3a5b70] text-[#3a5b70] py-3 rounded-xl font-bold">طلباتي السابقة</button>
-                <button onclick="window.location.href='https://wa.me/201016606827'" class="w-full text-red-500 font-bold py-2">تسجيل الخروج</button>
-            </div>
-        </div>
-    </section>
-
-    <nav class="fixed bottom-0 inset-x-0 h-20 bg-white border-t flex justify-around items-center px-2 z-[100]">
-        <button onclick="navTo('buy', this)" class="nav-item active flex flex-col items-center gap-1">
-            <i class="fa-solid fa-shop text-xl"></i>
-            <span class="text-[10px]">متجر الشراء</span>
-        </button>
-        <button onclick="navTo('offers', this)" class="nav-item flex flex-col items-center gap-1">
-            <i class="fa-solid fa-percent text-xl"></i>
-            <span class="text-[10px]">أخر العروض</span>
-        </button>
-        <button onclick="navTo('market', this)" class="nav-item flex flex-col items-center gap-1">
-            <i class="fa-solid fa-cart-shopping text-xl"></i>
-            <span class="text-[10px]">متجر التسوق</span>
-        </button>
-        <button onclick="navTo('profile', this)" class="nav-item flex flex-col items-center gap-1">
-            <i class="fa-solid fa-user-circle text-xl"></i>
-            <span class="text-[10px]">حسابي</span>
-        </button>
-    </nav>
+    <div class="card">
+        <h2>باقة 325 UC</h2>
+        <div class="price-tag">250 EGP</div>
+        <button class="buy-button" id="purchaseBtn">شراء الآن</button>
+    </div>
 
     <script>
-        // وظيفة التنقل بين الصفحات
-        function navTo(pageId, btn) {
-            // إخفاء كل الصفحات
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // إظهار الصفحة اللي ضغطت عليها
-            document.getElementById('page-' + pageId).classList.add('active');
-            
-            // تحديث شكل الأزرار
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        // وظيفة الضغط على لعبة (فتح صفحة تفاصيل)
-        function openProduct(gameName) {
-            alert('أنت الآن تطلب شحن: ' + gameName + '\nسيتم نقلك لصفحة الأسعار..');
-            // هنا تقدر تضيف كود يفتح صفحة تانية بأسعار الـ UC
-        }
+        document.getElementById('purchaseBtn').onclick = function() {
+            // الأمر اللي بيتنفذ لما تضغط على الزرار
+            alert('تم توجيهك لصفحة الدفع الخاصة بـ PUS Gaming');
+            window.location.href = "https://wa.me/201234567890"; // حط رقم الواتساب بتاعك هنا
+        };
     </script>
-</body>
-</html> <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUS STORE | أسعار UC</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --main-blue: #3a5b70; --accent: #a5d8eb; }
-        body { background-color: #f0f7f9; font-family: sans-serif; padding-bottom: 80px; }
-        .page { display: none; animation: slideUp 0.3s ease; }
-        .page.active { display: block; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .uc-card { background: white; border-radius: 20px; border: 1px solid #e2e8f0; transition: 0.3s; }
-        .uc-card:hover { border-color: var(--main-blue); transform: translateY(-5px); }
-        .btn-buy { background: var(--main-blue); color: white; padding: 8px 15px; border-radius: 12px; font-weight: bold; font-size: 13px; }
-    </style>
-</head>
-<body>
 
-    <header class="bg-[#3a5b70] p-4 flex justify-between items-center text-white sticky top-0 z-50">
-        <div class="flex items-center gap-2" onclick="goHome()">
-            <span class="font-black italic text-xl">PUS</span>
-        </div>
-        <div id="header-title" class="text-sm font-bold">متجر الشراء</div>
-    </header>
-
-    <section id="page-buy" class="page active p-4">
-        <div class="flex gap-4 mb-6 overflow-x-auto font-bold text-[#3a5b70]">
-            <button class="bg-[#bdcad1] px-5 py-2 rounded-full shadow-sm">الألعاب</button>
-            <button class="px-5 py-2 text-gray-400">التطبيقات</button>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-            <div onclick="openPrices('PUBG MOBILE')" class="bg-[#3a5b70] rounded-2xl aspect-square flex flex-col items-center justify-center text-white p-4 shadow-lg cursor-pointer">
-                <i class="fa-solid fa-crown text-4xl mb-4 opacity-30"></i>
-                <span class="font-bold">PUBG MOBILE</span>
-                <span class="text-[10px] mt-2 bg-white/20 px-2 py-1 rounded">اضغط للشحن</span>
-            </div>
-            <div class="bg-[#3a5b70] rounded-2xl aspect-square flex flex-col items-center justify-center text-white p-4 shadow-lg opacity-50">
-                <i class="fa-solid fa-fire text-4xl mb-4 opacity-30"></i>
-                <span class="font-bold">FREE FIRE</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="page-prices" class="page p-4">
-        <div class="flex items-center gap-3 mb-6">
-            <button onclick="goHome()" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#3a5b70] shadow-sm">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-            <h2 id="game-title" class="text-xl font-black text-[#3a5b70]">أسعار الشحن</h2>
-        </div>
-
-        <div class="space-y-3">
-            <div class="uc-card p-4 flex justify-between items-center shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-500">
-                        <i class="fa-solid fa-coins"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-[#3a5b70]">60 UC</h4>
-                        <p class="text-xs text-gray-400">شحن فوري بالـ ID</p>
-                    </div>
-                </div>
-                <div class="text-left">
-                    <div class="font-black text-[#3a5b70] mb-1">55 EGP</div>
-                    <button onclick="order('60 UC')" class="btn-buy">شحن</button>
-                </div>
-            </div>
-
-            <div class="uc-card p-4 flex justify-between items-center shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-500">
-                        <i class="fa-solid fa-coins"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-[#3a5b70]">325 UC</h4>
-                        <p class="text-xs text-gray-400">باقة المحترفين</p>
-                    </div>
-                </div>
-                <div class="text-left">
-                    <div class="font-black text-[#3a5b70] mb-1">250 EGP</div>
-                    <button onclick="order('325 UC')" class="btn-buy">شحن</button>
-                </div>
-            </div>
-
-            <div class="uc-card p-4 flex justify-between items-center shadow-sm border-2 border-blue-200">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-500">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-[#3a5b70]">660 UC</h4>
-                        <p class="text-xs text-blue-400 font-bold">الأكثر طلباً 🔥</p>
-                    </div>
-                </div>
-                <div class="text-left">
-                    <div class="font-black text-[#3a5b70] mb-1">480 EGP</div>
-                    <button onclick="order('660 UC')" class="btn-buy">شحن</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="page-profile" class="page p-4">
-        <div class="bg-white rounded-3xl p-8 text-center shadow-xl">
-            <h3 class="font-bold text-[#3a5b70]">حسابي</h3>
-            <p class="text-gray-400 text-sm">قريباً تفاصيل الحساب بالكامل</p>
-        </div>
-    </section>
-
-    <nav class="fixed bottom-0 inset-x-0 h-20 bg-white border-t flex justify-around items-center px-2 z-[100]">
-        <button onclick="goHome()" class="nav-btn flex flex-col items-center gap-1 text-[#3a5b70]">
-            <i class="fa-solid fa-shop text-xl"></i>
-            <span class="text-[10px] font-bold">متجر الشراء</span>
-        </button>
-        <button onclick="navTo('profile')" class="nav-btn flex flex-col items-center gap-1 text-gray-400">
-            <i class="fa-solid fa-user-circle text-xl"></i>
-            <span class="text-[10px] font-bold">حسابي</span>
-        </button>
-    </nav>
-
-    <script>
-        // وظيفة فتح صفحة الأسعار
-        function openPrices(game) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-prices').classList.add('active');
-            document.getElementById('game-title').innerText = 'أسعار ' + game;
-            document.getElementById('header-title').innerText = 'قائمة الأسعار';
-        }
-
-        // وظيفة العودة للرئيسية
-        function goHome() {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-buy').classList.add('active');
-            document.getElementById('header-title').innerText = 'متجر الشراء';
-        }
-
-        function navTo(page) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + page).classList.add('active');
-        }
-
-        // وظيفة زر الشحن (تفتح واتساب أوتوماتيك)
-        function order(package) {
-            const phone = "201016606827"; 
-            const msg = "أهلاً PUS STORE، محتاج أشحن باقة (" + package + ") للعبة ببجي موبايل.";
-            window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
-        }
-    </script>
 </body>
 </html>
-
-
